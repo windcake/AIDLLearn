@@ -1,0 +1,23 @@
+@startuml
+
+interface IInterface
+IInterface : asBinder()
+
+interface IActivityManager
+IActivityManager : startActivity()
+
+class ActivityManagerProxy
+ActivityManagerProxy : startActivity()
+
+class ActivityManagerNative
+ActivityManagerNative : onTransact() - > startActivity()
+
+class ActivityManagerService
+ActivityManagerService : startActivity()
+
+IInterface <|-- IActivityManager
+IActivityManager <|-- ActivityManagerProxy
+IActivityManager <|-- ActivityManagerNative
+ActivityManagerNative <|-- ActivityManagerService
+
+@enduml
