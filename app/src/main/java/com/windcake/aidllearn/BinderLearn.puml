@@ -1,0 +1,31 @@
+@startuml
+
+interface IInterface
+IInterface : asBinder()
+
+interface IMyAidlInterface
+
+class Binder
+interface IBinder
+
+class Stub{
+    IMyAidlInterface asInterface(IBinder obj)
+    IBinder asBinder()
+    boolean onTransact()
+}
+
+class Proxy{
+    IBinder mRemote
+    IBinder asBinder()
+    int add(int x, int y)
+}
+
+
+IInterface <|-- IMyAidlInterface
+
+IBinder <|-- Binder
+Binder <|-- Stub
+IMyAidlInterface <|-- Stub
+
+IMyAidlInterface <|-- Proxy
+@enduml
